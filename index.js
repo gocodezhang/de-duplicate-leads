@@ -7,7 +7,7 @@ import {
   testCase5,
 } from "./mockData/leads.js";
 
-console.log(deDuplicate(testCase5));
+// console.log(deDuplicate(testCase5));
 console.log(deDuplicateStable(testCase5));
 
 // const map = new Map();
