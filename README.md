@@ -34,7 +34,7 @@
 npm run initalize
 ```
 
-- Please call the function `deDuplicateStable` to run de-duplicate process and note below as an example
+- Please call the function `deDuplicateStable` in CLI to run de-duplicate process and note below as an example
 
 ```sh
 const data =
@@ -117,7 +117,7 @@ npm run test
 1. `Array.sort` is a stable sort in javascript which maintain the original order of records if two records are equal. Hence `customSort` function only need to sort based on `entryDate`
 2. When adding records into `keyMap`, an extra property is added to store the `index` in the original array. So that the record original position can be accessed in constant time.
    - Most importantly, `keyMap` store "entire change logs" **where in every array the last record is the final reconciled one and all previous records are ones converted into the final reconciled one**
-   - With `index` and the output, the original input can be restored.
+   - Hence, given `keyMap` along with `index` property and the output, the original input can be restored.
 3. There could be record A which can be reconciled into two records (B with same `_id` and C with same `email`). In the current algorithm, the record with the same `_id` (e.g B) is proritized when creating change logs.
 4. For "step 4 - build the final output", it could be more time efficient to build directly via `keyMap` given some records could be reconciled. But choosing to iterate through the original array in order to preserve the order in the output.
 
