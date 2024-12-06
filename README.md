@@ -61,7 +61,7 @@ const data =
 deDuplicateStable(data)
 ```
 
-- Sample output from above function call
+- Sample output from above function call (**note**: change log is printed in console as a side effect. It is not the output of `deDuplicateStable`)
 
 ```sh
 ==================================== change log start =======================================
