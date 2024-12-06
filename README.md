@@ -28,13 +28,13 @@
 
 ### Approach #1 - Run the program in CLI interactively
 
-- Run below command to open Node CLI environment
+- Run below command to open Node CLI environment (using [Node REPL](https://nodejs.org/en/learn/command-line/how-to-use-the-nodejs-repl))
 
 ```sh
 npm run initalize
 ```
 
-- The CLI environment has been loaded with function `deDuplicateStable`. Please call the function to run de-duplicate process and note below as an example
+- Please call the function `deDuplicateStable` to run de-duplicate process and note below as an example
 
 ```sh
 const data =
@@ -134,7 +134,8 @@ Change log has below format
   - address
   - entryDate
 
-```==================================== change log start =======================================
+```
+==================================== change log start =======================================
 2024-12-06T06:40:54.713Z: Reconciled duplicated records with id = jkj238238jdsnfsj23
 _id: jkj238238jdsnfsj23
 email: foo@bar.com -> bill@bar.com
