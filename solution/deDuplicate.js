@@ -1,99 +1,8 @@
-export function deDuplicate(data) {
-  const { leads } = data;
-  // go through the data and find duplicate based on id and email
-  const idMap = new Map();
-  const emailMap = new Map();
-
-  for (let i = 0; i < leads.length; i++) {
-    const lead = leads[i];
-    const { _id, email } = lead;
-    if (!idMap.has(_id)) {
-      idMap.set(_id, []);
-    }
-    const arrayWithSameId = idMap.get(_id);
-    arrayWithSameId.push(lead);
-
-    if (!emailMap.has(email)) {
-      emailMap.set(email, []);
-    }
-    const arrayWithSameEmail = emailMap.get(email);
-    arrayWithSameEmail.push(lead);
-  }
-
-  // sort
-  for (const value of idMap.values()) {
-    value.sort(customSort);
-  }
-
-  for (const value of emailMap.values()) {
-    value.sort(customSort);
-  }
-
-  // cleanup
-  for (const [key, records] of idMap) {
-    let last = records[records.length - 1];
-    let recordsWithSameEmail = emailMap.get(last.email);
-
-    while (
-      last &&
-      recordsWithSameEmail.length &&
-      last !== recordsWithSameEmail[recordsWithSameEmail.length - 1]
-    ) {
-      records.pop();
-      last = records.length ? records[records.length - 1] : null;
-      if (last !== null) {
-        recordsWithSameEmail = emailMap.get(last.email);
-      }
-    }
-  }
-
-  for (const [key, records] of emailMap) {
-    let last = records[records.length - 1];
-    let recordsWithSameId = idMap.get(last._id);
-
-    while (
-      last &&
-      recordsWithSameId.length &&
-      last !== recordsWithSameId[recordsWithSameId.length - 1]
-    ) {
-      records.pop();
-      last = records.length ? records[records.length - 1] : null;
-      if (last !== null) {
-        recordsWithSameId = idMap.get(last._id);
-      }
-    }
-  }
-
-  // build result
-  const result = [];
-  for (const [key, value] of idMap) {
-    if (value.length) {
-      result.push(value[value.length - 1]);
-    }
-  }
-
-  for (const [key, records] of emailMap) {
-    if (records.length) {
-      const last = records[records.length - 1];
-      const recordsWithSameId = idMap.get(last._id);
-      if (
-        recordsWithSameId.length === 0 ||
-        last !== recordsWithSameId[recordsWithSameId.length - 1]
-      ) {
-        result.push(last);
-      }
-    }
-  }
-
-  return result;
-}
-
 const idPrefix = "___id";
 const emailPrefix = "email";
 
-export function deDuplicateStable(data) {
+function deDuplicateStable(data) {
   const { leads } = data;
-
   // go through the data and find duplicate under the same id and email
   const keyMap = new Map();
 
@@ -232,3 +141,7 @@ function customSort(a, b) {
 
   return dateA.getTime() - dateB.getTime();
 }
+
+module.exports = {
+  deDuplicateStable,
+};

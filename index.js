@@ -1,32 +1,31 @@
-import { deDuplicate, deDuplicateStable } from "./solution/deDuplicate.js";
-import {
+const { deDuplicateStable } = require("./solution/deDuplicate.js");
+const {
   testCase1,
   testCase2,
   testCase3,
   testCase4,
   testCase5,
-} from "./mockData/leads.js";
+} = require("./testData/leads.js");
 
-// console.log(deDuplicate(testCase5));
-console.log(deDuplicateStable(testCase5));
+function initializeContext(context) {
+  context.deDuplicateStable = deDuplicateStable;
+  context.testCase1 = testCase1;
+  context.testCase2 = testCase2;
+  context.testCase3 = testCase3;
+  context.testCase4 = testCase4;
+  context.testCase5 = testCase5;
+}
 
-// const map = new Map();
+const repl = require("node:repl");
 
-// testData.leads.forEach((element) => {
-//   if (!map.has(element._id)) {
-//     map.set(element._id, 0);
-//   }
-//   map.set(element._id, map.get(element._id) + 1);
+console.log(
+  "Welcome to duDuplication CLI! Type `deDuplicateStable(leads)` with your defined `leads` run de-dup"
+);
 
-//   if (!map.has(element.email)) {
-//     map.set(element.email, 0);
-//   }
-//   map.set(element.email, map.get(element.email) + 1);
-// });
+const local = repl.start("> ");
 
-// map.forEach((value, key) => {
-//   if (value > 1) {
-//     console.log(key);
-//     console.log(value);
-//   }
-// });
+// set initial context
+initializeContext(local.context);
+
+// reload context on reset
+local.on("reset", initializeContext);
