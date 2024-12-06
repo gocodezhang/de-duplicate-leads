@@ -31,7 +31,7 @@
 - Run below command to open Node CLI environment (using [Node REPL](https://nodejs.org/en/learn/command-line/how-to-use-the-nodejs-repl))
 
 ```sh
-npm run initalize
+npm run initialize
 ```
 
 - Please call the function `deDuplicateStable` in CLI to run de-duplicate process and note below as an example
