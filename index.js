@@ -19,7 +19,7 @@ function initializeContext(context) {
 const repl = require("node:repl");
 
 console.log(
-  "Welcome to duDuplication CLI! Type `deDuplicateStable(leads)` with your defined `leads` run de-dup"
+  "Welcome to duDuplication CLI!\n\nType `deDuplicateStable(leads)`, then define or replace `leads` with your desired input data\nInput Format: { leads: array[record] }"
 );
 
 const local = repl.start("> ");

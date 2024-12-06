@@ -75,7 +75,24 @@ function deDuplicateStable(data) {
   }
 
   // Step 4 - build final output and print change logs
-  return buildDeduplicatedLeads(leads, keyMap, exists);
+
+  // change log portion divider start
+  console.log(
+    "==================================== change log start ======================================="
+  );
+  const deDupLeads = buildDeduplicatedLeads(leads, keyMap, exists);
+
+  // print a message if no duplicated found
+  if (deDupLeads.length === leads.length) {
+    console.log("No duplicated records found");
+  }
+  // change log portion divider end
+  console.log(
+    "==================================== change log end ======================================="
+  );
+
+  // format per lead.json and return
+  return { leads: deDupLeads };
 }
 
 function buildDeduplicatedLeads(leads, keyMap, exists) {

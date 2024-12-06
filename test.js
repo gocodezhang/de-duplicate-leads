@@ -10,4 +10,4 @@ const {
 } = require("./testData/leads.js");
 
 // pass test case here
-console.log(deDuplicateStable(testCase7));
+console.log(deDuplicateStable(testCase1));
